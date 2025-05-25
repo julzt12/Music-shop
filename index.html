@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harmony Music Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 80vh;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .category-badge {
+        transition: all 0.3s ease;
+      }
+
+      .category-badge:hover {
+        transform: scale(1.05);
+        background-color: #3b82f6;
+      }
+
+      .sale-badge {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-music text-blue-400 text-2xl"></i>
+          <a
+            href="#home"
+            class="text-2xl font-bold hover:text-blue-400 transition"
+            >Harmony Music</a
+          >
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#home" class="nav-link hover:text-blue-400 transition"
+            >Home</a
+          >
+          <a href="#products" class="nav-link hover:text-blue-400 transition"
+            >Products</a
+          >
+          <a href="#contact" class="nav-link hover:text-blue-400 transition"
+            >Contact</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#" class="hover:text-blue-400 transition"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
+          <a href="#" class="hover:text-blue-400 transition"
+            ><i class="fas fa-user"></i
+          ></a>
+          <button class="md:hidden focus:outline-none" id="menu-toggle">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden bg-gray-800 px-4 py-2" id="mobile-menu">
+        <a href="#home" class="block py-2 hover:text-blue-400 transition"
+          >Home</a
+        >
+        <a href="#products" class="block py-2 hover:text-blue-400 transition"
+          >Products</a
+        >
+        <a href="#contact" class="block py-2 hover:text-blue-400 transition"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Home Section -->
+      <section
+        id="home"
+        class="hero flex items-center justify-center text-center text-white"
+      >
+        <div class="px-4">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Find Your Perfect Instrument
+          </h1>
+          <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Discover premium quality musical instruments for beginners and
+            professionals alike.
+          </p>
+          <a
+            href="#products"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block"
+            >Shop Now</a
+          >
+        </div>
+      </section>
+
+      <!-- Featured Categories -->
+      <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12">Our Categories</h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <a
+              href="#guitars"
+              class="category-badge bg-gray-100 rounded-lg p-6 text-center hover:shadow-md"
+            >
+              <i class="fas fa-guitar text-4xl text-blue-500 mb-3"></i>
+              <h3 class="font-semibold">Guitars</h3>
+            </a>
+            <a
+              href="#pianos"
+              class="category-badge bg-gray-100 rounded-lg p-6 text-center hover:shadow-md"
+            >
+              <i class="fas fa-piano text-4xl text-blue-500 mb-3"></i>
+              <h3 class="font-semibold">Pianos</h3>
+            </a>
+            <a
+              href="#drums"
+              class="category-badge bg-gray-100 rounded-lg p-6 text-center hover:shadow-md"
+            >
+              <i class="fas fa-drum text-4xl text-blue-500 mb-3"></i>
+              <h3 class="font-semibold">Drums</h3>
+            </a>
+            <a
+              href="#wind"
+              class="category-badge bg-gray-100 rounded-lg p-6 text-center hover:shadow-md"
+            >
+              <i class="fas fa-music text-4xl text-blue-500 mb-3"></i>
+              <h3 class="font-semibold">Wind Instruments</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="products" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12">
+            Featured Products
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product 1 -->
+            <div
+              class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1558098329-a11cff621064?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Electric Guitar"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full sale-badge"
+                >
+                  SALE
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg">Fender Stratocaster</h3>
+                  <div class="text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+                <div class="flex items-center mb-2">
+                  <span class="text-gray-500 line-through mr-2">$999.99</span>
+                  <span class="text-blue-600 font-bold">$799.99</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <a
+                    href="#guitars"
+                    class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                    >Guitars</a
+                  >
+                  <a
+                    href="#electric"
+                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"
+                    >Electric</a
+                  >
+                  <a
+                    href="#new"
+                    class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded"
+                    >New</a
+                  >
+                </div>
+                <button
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div
+              class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1519683109079-d5f539e1542f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Grand Piano"
+                  class="w-full h-64 object-cover"
+                />
+              </div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg">Yamaha Grand Piano</h3>
+                  <div class="text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <span class="text-blue-600 font-bold">$12,499.99</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <a
+                    href="#pianos"
+                    class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                    >Pianos</a
+                  >
+                  <a
+                    href="#grand"
+                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"
+                    >Grand</a
+                  >
+                  <a
+                    href="#used"
+                    class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded"
+                    >Used</a
+                  >
+                </div>
+                <button
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div
+              class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1519892305095-2e1f8803f6dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Drum Set"
+                  class="w-full h-64 object-cover"
+                />
+                <div
+                  class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full sale-badge"
+                >
+                  SALE
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg">Pearl Drum Set</h3>
+                  <div class="text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                </div>
+                <div class="flex items-center mb-2">
+                  <span class="text-gray-500 line-through mr-2">$1,299.99</span>
+                  <span class="text-blue-600 font-bold">$999.99</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <a
+                    href="#drums"
+                    class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                    >Drums</a
+                  >
+                  <a
+                    href="#full-set"
+                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"
+                    >Full Set</a
+                  >
+                  <a
+                    href="#new"
+                    class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded"
+                    >New</a
+                  >
+                </div>
+                <button
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-8">
+            <a
+              href="#all-products"
+              class="inline-block bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-full transition duration-300"
+              >View All Products</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12">
+            What Our Customers Say
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-400 mr-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                "The Fender Stratocaster I bought plays like a dream. The setup
+                was perfect right out of the box!"
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Customer"
+                  class="w-10 h-10 rounded-full mr-3"
+                />
+                <div>
+                  <h4 class="font-semibold">Michael T.</h4>
+                  <p class="text-gray-500 text-sm">Professional Musician</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-400 mr-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                "Amazing customer service! They helped me find the perfect
+                beginner guitar for my daughter."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Customer"
+                  class="w-10 h-10 rounded-full mr-3"
+                />
+                <div>
+                  <h4 class="font-semibold">Sarah J.</h4>
+                  <p class="text-gray-500 text-sm">Parent</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-400 mr-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-4">
+                "The used Yamaha piano was in excellent condition and at a great
+                price. Highly recommend!"
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://randomuser.me/api/portraits/men/75.jpg"
+                  alt="Customer"
+                  class="w-10 h-10 rounded-full mr-3"
+                />
+                <div>
+                  <h4 class="font-semibold">David R.</h4>
+                  <p class="text-gray-500 text-sm">Piano Teacher</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-12 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
+              <form class="space-y-4">
+                <div>
+                  <label for="name" class="block mb-1">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block mb-1">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="message" class="block mb-1">Message</label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Our Location</h3>
+              <div class="mb-6">
+                <div class="flex items-start mb-4">
+                  <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                  <p>123 Music Street, Harmony City, HC 12345</p>
+                </div>
+                <div class="flex items-start mb-4">
+                  <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+                  <p>(123) 456-7890</p>
+                </div>
+                <div class="flex items-start mb-4">
+                  <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                  <p>info@harmonymusic.com</p>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                  <div>
+                    <p>Monday - Friday: 10:00 AM - 8:00 PM</p>
+                    <p>Saturday: 10:00 AM - 6:00 PM</p>
+                    <p>Sunday: 12:00 PM - 5:00 PM</p>
+                  </div>
+                </div>
+              </div>
+              <div id="map" class="rounded-lg overflow-hidden"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Harmony Music</h3>
+            <p class="text-gray-400">
+              Your one-stop shop for quality musical instruments since 2005.
+            </p>
+            <div class="flex space-x-4 mt-4">
+              <a href="#" class="text-gray-400 hover:text-white transition"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white transition"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white transition"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white transition"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-400 hover:text-white transition"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  class="text-gray-400 hover:text-white transition"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Customer Service</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >Shipping Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >Return Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white transition"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Newsletter</h4>
+            <p class="text-gray-400 mb-4">
+              Subscribe to get updates on new arrivals and special offers.
+            </p>
+            <form class="flex">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="px-4 py-2 rounded-l bg-gray-700 text-white focus:outline-none w-full"
+              />
+              <button
+                type="submit"
+                class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r transition duration-300"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400"
+        >
+          <p>&copy; 2023 Harmony Music Shop. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Product Details Modal (hidden by default) -->
+    <div
+      id="product-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto"
+      >
+        <div class="relative">
+          <button
+            id="close-modal"
+            class="absolute top-4 right-4 bg-gray-800 text-white rounded-full w-8 h-8 flex items-center justify-center z-10"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6">
+              <img
+                id="modal-image"
+                src=""
+                alt="Product"
+                class="w-full rounded-lg"
+              />
+              <div class="grid grid-cols-4 gap-2 mt-4">
+                <img
+                  src="https://images.unsplash.com/photo-1558098329-a11cff621064?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Thumbnail"
+                  class="cursor-pointer border rounded hover:border-blue-500"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Thumbnail"
+                  class="cursor-pointer border rounded hover:border-blue-500"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Thumbnail"
+                  class="cursor-pointer border rounded hover:border-blue-500"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  alt="Thumbnail"
+                  class="cursor-pointer border rounded hover:border-blue-500"
+                />
+              </div>
+            </div>
+            <div class="p-6">
+              <h2 id="modal-title" class="text-2xl font-bold mb-2">
+                Fender Stratocaster
+              </h2>
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-400 mr-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-600">(24 reviews)</span>
+              </div>
+              <div class="mb-6">
+                <span class="text-gray-500 line-through text-lg mr-2"
+                  >$999.99</span
+                >
+                <span class="text-blue-600 font-bold text-2xl">$799.99</span>
+                <span
+                  class="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full"
+                  >20% OFF</span
+                >
+              </div>
+              <div class="mb-6">
+                <h3 class="font-semibold mb-2">
+                  Product ID:
+                  <span class="font-normal text-gray-700">GUIT-001</span>
+                </h3>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <a
+                    href="#guitars"
+                    class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                    >Guitars</a
+                  >
+                  <a
+                    href="#electric"
+                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"
+                    >Electric</a
+                  >
+                  <a
+                    href="#new"
+                    class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded"
+                    >New</a
+                  >
+                </div>
+                <p class="text-gray-700 mb-4">
+                  The Fender Stratocaster is one of the most iconic electric
+                  guitars ever made. Known for its bright tone and comfortable
+                  playability, it's perfect for a wide range of musical styles.
+                </p>
+                <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                  <li>Maple neck with rosewood fingerboard</li>
+                  <li>Three single-coil pickups</li>
+                  <li>5-way pickup selector</li>
+                  <li>Synchronized tremolo bridge</li>
+                  <li>Includes gig bag and accessories</li>
+                </ul>
+              </div>
+              <div class="flex items-center space-x-4 mb-6">
+                <div class="flex items-center border rounded">
+                  <button class="px-3 py-1 text-xl">-</button>
+                  <span class="px-3 py-1 border-x">1</span>
+                  <button class="px-3 py-1 text-xl">+</button>
+                </div>
+                <button
+                  class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="border-t pt-4">
+                <div class="flex items-center text-gray-600 mb-2">
+                  <i class="fas fa-truck mr-2"></i>
+                  <span>Free shipping on orders over $100</span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                  <i class="fas fa-undo mr-2"></i>
+                  <span>30-day return policy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Page (hidden by default) -->
+    <div
+      id="category-page"
+      class="fixed inset-0 bg-white z-50 hidden overflow-y-auto"
+    >
+      <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-2xl font-bold" id="category-title">Guitars</h2>
+          <button
+            id="close-category"
+            class="bg-gray-800 text-white rounded-full w-8 h-8 flex items-center justify-center"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="mb-6">
+          <div class="flex flex-wrap gap-2">
+            <button
+              class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm"
+            >
+              All
+            </button>
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm"
+            >
+              Electric
+            </button>
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm"
+            >
+              Acoustic
+            </button>
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm"
+            >
+              Bass
+            </button>
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm"
+            >
+              Classical
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Product cards for this category would go here -->
+          <div
+            class="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300"
+          >
+            <div class="relative">
+              <img
+                src="https://images.unsplash.com/photo-1558098329-a11cff621064?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="Electric Guitar"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-1">Fender Stratocaster</h3>
+              <div class="flex items-center mb-2">
+                <span class="text-gray-500 line-through mr-2">$999.99</span>
+                <span class="text-blue-600 font-bold">$799.99</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span
+                  class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                  >Electric</span
+                >
+                <span
+                  class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded"
+                  >New</span
+                >
+              </div>
+              <button
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded transition duration-300"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+
+          <!-- More products... -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          menu.classList.toggle("hidden");
+        });
+
+      // Product modal functionality
+      const productCards = document.querySelectorAll(".product-card");
+      const modal = document.getElementById("product-modal");
+      const closeModal = document.getElementById("close-modal");
+
+      productCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          modal.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      closeModal.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      });
+
+      // Close modal when clicking outside
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Category page functionality
+      const categoryLinks = document.querySelectorAll(
+        '[href^="#"]:not([href="#"])'
+      );
+      const categoryPage = document.getElementById("category-page");
+      const closeCategory = document.getElementById("close-category");
+
+      categoryLinks.forEach((link) => {
+        if (
+          link.getAttribute("href").startsWith("#") &&
+          !["#home", "#products", "#contact", "#all-products"].includes(
+            link.getAttribute("href")
+          )
+        ) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const category = this.getAttribute("href").substring(1);
+            document.getElementById("category-title").textContent =
+              category.charAt(0).toUpperCase() + category.slice(1);
+            categoryPage.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+          });
+        }
+      });
+
+      closeCategory.addEventListener("click", function () {
+        categoryPage.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      });
+
+      // Close category page when clicking outside (needs adjustment)
+      categoryPage.addEventListener("click", function (e) {
+        if (e.target === categoryPage) {
+          categoryPage.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Initialize map (this would need a proper map API key in a real implementation)
+      function initMap() {
+        // This is just a placeholder - in a real app you would use Google Maps API or similar
+        const mapElement = document.getElementById("map");
+        if (mapElement) {
+          mapElement.innerHTML = `
+                    <div class="bg-gray-700 h-full flex items-center justify-center text-gray-400">
+                        <div class="text-center p-4">
+                            <i class="fas fa-map-marked-alt text-4xl mb-2"></i>
+                            <p>Map would display here with proper API key</p>
+                            <p class="text-sm mt-2">123 Music Street, Harmony City</p>
+                        </div>
+                    </div>
+                `;
+        }
+      }
+
+      // Initialize when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        initMap();
+      });
+    </script>
+  </body>
+</html>
+
